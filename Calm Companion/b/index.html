@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ART SPLASH</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F2F2F2;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+
+    canvas {
+      border: 1px solid #999999;
+      background-color: #FFFFFF;
+      cursor: crosshair;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #333333;
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Art Splash</h1>
+  <div class="container">
+    <canvas id="canvas" width="800" height="400"></canvas>
+  </div>
+  <label for="colorPicker">Select Color:</label>
+  <input type="color" id="colorPicker">
+  <br>
+  <button id="startButton">Start</button>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    let isPainting = false;
+
+    canvas.addEventListener('mousedown', startPainting);
+    canvas.addEventListener('mousemove', paint);
+    canvas.addEventListener('mouseup', stopPainting);
+    canvas.addEventListener('mouseleave', stopPainting);
+
+    document.getElementById('startButton').addEventListener('click', () => {
+      clearCanvas();
+      startPainting();
+    });
+
+    function startPainting() {
+      isPainting = true;
+    }
+
+    function stopPainting() {
+      isPainting = false;
+    }
+
+    function paint(event) {
+      if (!isPainting) return;
+
+      const x = event.clientX - canvas.offsetLeft;
+      const y = event.clientY - canvas.offsetTop;
+
+      const color = document.getElementById('colorPicker').value;
+
+      context.fillStyle = color;
+      context.fillRect(x, y, 10, 10);
+    }
+
+    function clearCanvas() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
+</body>
+</html>

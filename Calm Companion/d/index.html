@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Self-Care Bingo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F2F2F2;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cell {
+      border: 2px solid #333333;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      background-color: #FFFFFF;
+      transition: background-color 0.3s;
+    }
+
+    .cell:hover {
+      background-color: #EEEEEE;
+    }
+
+    .cell.selected {
+      background-color: #CCCCCC;
+    }
+
+    .cell .content {
+      display: none;
+    }
+
+    .cell.selected .content {
+      display: block;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #333333;
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Self-Care Bingo</h1>
+  <div class="container">
+    <div class="cell" id="cell1">
+      <span class="title">Suprise 1</span>
+      <span class="content">Go for a walk! Take a stroll outside and enjoy nature.</span>
+    </div>
+    <div class="cell" id="cell2">
+      <span class="title">Suprise 2</span>
+      <span class="content">Take a relaxing bath! Indulge in a warm bath with soothing scents.</span>
+    </div>
+    <div class="cell" id="cell3">
+      <span class="title">Suprise 3</span>
+      <span class="content">Read a book! Get lost in a good book and unwind.</span>
+    </div>
+    <div class="cell" id="cell4">
+      <span class="title">Suprise 4</span>
+      <span class="content">Try a new recipe! Experiment with a new dish in the kitchen.</span>
+    </div>
+    <div class="cell" id="cell5">
+      <span class="title">Suprise 5</span>
+      <span class="content">Listen to music! Enjoy your favorite tunes and relax.</span>
+    </div>
+    <div class="cell" id="cell6">
+      <span class="title">Suprise 6</span>
+      <span class="content">Write in a journal! Express your thoughts and feelings on paper.</span>
+    </div>
+    <div class="cell" id="cell7">
+      <span class="title">Suprise 7</span>
+      <span class="content">Practice meditation! Find calmness and focus through meditation.</span>
+    </div>
+    <div class="cell" id="cell8">
+      <span class="title">Suprise 8</span>
+      <span class="content">Have a movie night! Watch your favorite movies and unwind.</span>
+    </div>
+    <div class="cell" id="cell9">
+      <span class="title">Suprise 9</span>
+      <span class="content">Do a puzzle or game! Engage your mind with puzzles or games.</span>
+    </div>
+  </div>
+  <button id="startButton">Start</button>
+
+  <script>
+    const cells = document.querySelectorAll('.cell');
+    const startButton = document.getElementById('startButton');
+
+    let selectedCells = [];
+
+    cells.forEach(cell => {
+      cell.addEventListener('click', toggleCellSelection);
+    });
+
+    startButton.addEventListener('click', generateBingo);
+
+    function toggleCellSelection() {
+      this.classList.toggle('selected');
+    }
+
+    function generateBingo() {
+      selectedCells = Array.from(document.querySelectorAll('.cell.selected'));
+
+      if (selectedCells.length < 3) {
+        alert('Please select at least 3 cells.');
+        return;
+      }
+
+      // Randomize the order of selected cells
+      shuffleArray(selectedCells);
+
+      // Print the selected cells as the Bingo board
+      console.log('Self-Care Bingo Board:');
+      console.log('-------------------------');
+      selectedCells.forEach((cell, index) => {
+        const title = cell.querySelector('.title').textContent;
+        const content = cell.querySelector('.content').textContent;
+        console.log(`${index + 1}. ${title} - ${content}`);
+      });
+    }
+
+    // Fisher-Yates shuffle algorithm to randomize an array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Mood Tracker</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <style>
+    body{
+      background-image: url(5.jpeg);
+      background-size: cover;
+    }
+  </style>
+  <h1 style="font-size: 60px;">Daily Mood Tracker</h1>
+<div class="grid">
+  <div id="mood-form" >
+    <label for="rating"  style="font-size: 34px;">How do you feel today on the scale of 1-10:</label>
+    <input type="number" id="rating" min="1" max="10">
+    <br>
+    <label for="activities" style="font-size: 34px;">What did you do today?:</label>
+    <input type="text" id="activities">
+    <br>
+    <label for="notes"  style="font-size: 34px;">Anything you want to note?:</label>
+    <textarea id="notes"></textarea>
+    <br>
+    <button id="submit-btn" style="font-size: 24px;">Submit</button>
+  </div>
+  <div id="mood-table">
+  </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="font-size: 24px;">Date</th>
+          <th style="font-size: 24px;">Rating</th>
+          <th style="font-size: 24px;">Activities</th>
+          <th style="font-size: 24px;">Notes</th>
+        </tr>
+      </thead>
+      <tbody id="mood-entries"></tbody>
+    </table>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

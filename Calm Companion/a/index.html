@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Breathing Exercise</title>
+  <style>
+    #breathText {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+  </style>
+</head>
+<body>
+  <style>
+    body{
+      background-image: url(12.png);
+      background-size: cover;
+    }
+  </style>
+  <div id="breathText">Take a deep breath and follow the instructions...</div>
+
+  <script>
+    
+    // Function to animate the breathing exercise
+    function animateBreathing() {
+      const breathText = document.getElementById("breathText");
+
+      // Initial state
+      breathText.innerText = "Breathe in...";
+
+      // Animation sequence
+      setTimeout(() => {
+        breathText.innerText = "Hold...";
+        setTimeout(() => {
+          breathText.innerText = "Breathe out...";
+          setTimeout(() => {
+            breathText.innerText = "Hold...";
+            setTimeout(animateBreathing, 2000); // Repeat the sequence
+          }, 3000);
+        }, 4000);
+      }, 5000);
+    }
+
+    // Start the breathing exercise
+    animateBreathing();
+  </script>
+</body>
+</html>
+
